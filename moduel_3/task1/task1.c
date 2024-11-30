@@ -11,10 +11,9 @@
 
 void abrt_handler()
 {
-const char *fifo = "fifo";
-char buf[BUFSIZE];
-
-printf ("Process terminated making fifo\n");
+    const char *fifo = "fifo";
+    char buf[BUFSIZE];
+    printf("Process terminated making fifo\n");
     if (mkfifo(fifo, 0777) == -1)
     {
         unlink(fifo);
@@ -24,23 +23,23 @@ printf ("Process terminated making fifo\n");
         if (errno != EEXIST)
         {
             printf ("Failed to create fifo\n");
-            exit (EXIT_FAILURE);
+            exit(EXIT_FAILURE);
         }
     };
 
-char msg[] = "process was terminated by signal";
-int fd = open(fifo, O_RDWR);
-int fdw = write (fd, &msg, strlen(msg));
-int fdr = read(fd, &buf, sizeof(buf));
-printf("\n%s \n", buf);
+    char msg[] = "process was terminated by signal";
+    int fd = open(fifo, O_RDWR);
+    int fdw = write(fd, &msg, strlen(msg));
+    int fdr = read(fd, &buf, sizeof(buf));
+    printf("\n%s \n", buf);
 
-if (fd == -1 || fdw == -1 || fdr == -1) 
-    {
-        printf("Oops something went wrong");
-        exit (EXIT_FAILURE);
-    } 
+    if (fd == -1 || fdw == -1 || fdr == -1) 
+        {
+            printf("Oops something went wrong");
+            exit(EXIT_FAILURE);
+        } 
 
-exit (EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
 
 int main (int argc, char ** argv)
@@ -72,11 +71,11 @@ int main (int argc, char ** argv)
             break;
 
         case 3:
-            exit (EXIT_SUCCESS);
+            exit(EXIT_SUCCESS);
 
         default:
             printf("Invalid option");
         }
     }
-    return EXIT_FAILURE;
+    return 0;
 }
