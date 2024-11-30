@@ -13,7 +13,7 @@ void abrt_handler()
 {
     const char *fifo = "fifo";
     char buf[BUFSIZE];
-    printf("Process terminated making fifo\n");
+    printf("Process aborted, making fifo\n");
     if (mkfifo(fifo, 0777) == -1)
     {
         unlink(fifo);
@@ -25,9 +25,9 @@ void abrt_handler()
             printf ("Failed to create fifo\n");
             exit(EXIT_FAILURE);
         }
-    };
+    }
 
-    char msg[] = "process was terminated by signal";
+    char msg[] = "Process was aborted by signal";
     int fd = open(fifo, O_RDWR);
     int fdw = write(fd, &msg, strlen(msg));
     int fdr = read(fd, &buf, sizeof(buf));
