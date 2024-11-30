@@ -56,25 +56,25 @@ int main (int argc, char ** argv)
     int t = 0;
     while (1)
     {
-    scanf("%d", &t);
-    switch (t)
-        {
-        case 1: 
-            kill (getpid(), SIGABRT);
-            break;
+        scanf("%d", &t);
+        switch (t)
+            {
+            case 1: 
+                kill (getpid(), SIGABRT);
+                break;
 
-        case 2:
-            int z;
-            printf("Choose signal\n");
-            scanf("%d", &z);
-            kill (getpid(), z);
-            break;
+            case 2:
+                int z;
+                printf("Choose signal\n");
+                scanf("%d", &z);
+                kill (getpid(), z);
+                break;
 
-        case 3:
-            exit(EXIT_SUCCESS);
+            case 3:
+                exit(EXIT_SUCCESS);
 
-        default:
-            printf("Invalid option");
+            default:
+                printf("Invalid option");
         }
     }
     return 0;
